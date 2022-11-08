@@ -32,11 +32,24 @@ import { url } from 'inspector';
   /**************************************************************************** */
 
   //! END @TODO1
-
+  // define validURL function
+  function validURL(str: string) {
+    var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+      '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+      '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+      '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+      '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+      '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+    return !!pattern.test(str);
+  }
   app.get("/filteredimage", async (req: express.Request, res: express.Response) => {
-    let { image_url } = req.query.image_url.toString();
+    let { image_url } = req.query;
     if ( !image_url ) {
       return res.status(400).send("image_url is required");
+    }
+    // check if the url image is valid
+    if (!validURL(image_url)) {
+      return res.status(400).send("image_url is not valid");
     }
     filterImageFromURL(image_url)
     .then(filteredpath => {
@@ -49,7 +62,7 @@ import { url } from 'inspector';
     }).catch(() => {
       return res.status(422).send("error when processing the image");
     });
-} );  
+  } );  
 
   // Root Endpoint
   // Displays a simple message to the user

@@ -1,5 +1,5 @@
 # Link
-http://image-filter-starter-code2-dev22.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://placekitten.com/g/200/800
+http://image-filter-starter-code2-dev22.us-east-1.elasticbeanstalk.com/filteredimage?image_url=https://avatars.mds.yandex.net/i?id=dbd4609ec1e2bdf0e8b7efb5b397af53-4834372-images-thumbs&n=13&exp=1
 http://image-filter-starter-code2-dev22.us-east-1.elasticbeanstalk.com/
 # Udagram Image Filtering Microservice
 
